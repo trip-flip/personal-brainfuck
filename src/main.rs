@@ -1,7 +1,7 @@
 use std::env::args;
 
 mod bf {
-    pub fn from_input(input: &[u8]) {
+    pub fn parse(input: &[u8]) {
         let mut data_index = 0;
         let mut input_index = 0;
         let mut data: Vec<u8> = vec![0];
@@ -72,5 +72,5 @@ fn main() {
     let path = arg.unwrap();
     let mut input = std::fs::read_to_string(path).unwrap();
     input.retain(|c| !c.is_whitespace());
-    bf::from_input(input.as_bytes());
+    bf::parse(input.as_bytes());
 }
