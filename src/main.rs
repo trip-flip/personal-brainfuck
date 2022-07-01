@@ -1,7 +1,7 @@
 use std::env::args;
 
 mod bf {
-    pub fn from_input(input: &[u8]) -> Result<(), String> {
+    pub fn from_input(input: &[u8]) {
         let mut data_index = 0;
         let mut input_index = 0;
         let mut data: Vec<u8> = vec![0];
@@ -56,7 +56,6 @@ mod bf {
             }
             input_index += 1;
         }
-        Ok(())
     }
 
     // fn err<T>(m: &str) -> Result<T, String> {
@@ -73,5 +72,5 @@ fn main() {
     let path = arg.unwrap();
     let mut input = std::fs::read_to_string(path).unwrap();
     input.retain(|c| !c.is_whitespace());
-    bf::from_input(input.as_bytes()).unwrap();
+    bf::from_input(input.as_bytes());
 }
