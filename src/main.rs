@@ -64,13 +64,18 @@ mod bf {
 }
 
 fn main() {
-    let arg = args().nth(1);
-    if arg.is_none() {
+    let file_string = args()
+        .nth(1)
+        .map(|path| {
+            std::fs::read_to_string(path).ok()
+        }
+    ).flatten();
+
+    if file_string.is_none() {
+        println!("No file with the provided path. Exitting....");
         return;
     }
-
-    let path = arg.unwrap();
-    let mut input = std::fs::read_to_string(path).unwrap();
+    let mut input= file_string.unwrap();
     input.retain(|c| !c.is_whitespace());
     bf::parse(input.as_bytes());
 }
